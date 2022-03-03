@@ -1,0 +1,3 @@
+The HTTP package wireshark captured is persistent HTTP, because the connection of HTTP/1.1 is stated as keep-alive meaning that it uses persistent connection.
+HTTP/1.1 are also persistent by default unless the connection is stated as closed.
+If the connection is closed, then the HTTP will be non-persistent.
