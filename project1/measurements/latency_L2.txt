@@ -1,0 +1,2 @@
+Bandwidth: 40.1 Mbits/sec
+RTT min/avg/max/mdev = 20.360/22.623/57.973/8.132 ms
