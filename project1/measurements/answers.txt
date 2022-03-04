@@ -1,0 +1,22 @@
+Q2:
+I predict that the latency would be estimated to about 160ms because the latency of L1, L2, and L3 is added to around 160ms. The path from h1 to h4 is linked from L1 to L3.
+As for the throughput, I predict that it'll be around 20 Mbps. The path from h1 to h4 is linked from L1 to L3 and out of the three it's minimized to 20Mbps.
+
+The averaged RTT is 161.666ms and the throughput is 21.5 Mbits/sec, which are very similar to my prediction.
+
+Q3:
+I predict that for all of the pairs from s1 to s4 will take about 160ms for latency and 20 Mbits/sec for throughput. Latency is calculated by the accumulated time from L1 to L3 while throughput is the minimum bandwidth between L1 to L3.
+
+For h7 to h9, the average RTT is 161.777ms and throughput is 22.8 Mbits/sec.
+For h4 to h10, the average RTT is 162.089ms and throughput is 12.8 Mbits/sec.
+
+For h10 to h4, the average RTT is 161.833ms and throughput is 20.9 Mbits/sec.
+For h9 to h1, the average RTT is 161.873ms and throughput is 11.0 Mbits/sec.
+For h7 to h8, the average RTT is 161.810ms and throughput is 6.21 Mbits/sec.
+
+My predictions for both two and three pairs are similarly by all of the average RTT and throughput for the first pairs. However, as the other pairs were communicating simultaneously, the throughput for each decreased. This decrement in throughput happened due to multiplexing where it takes multiple signals and combining them into one. The use of it enhanced the connection and reduced the time in communicating.
+
+Q4:
+For h1 to h4, I predict that the latency will be around 160 ms because the accumulated latency from L1 to L3 is around 160ms. As for the throughput, I predict that it'll be around 20 Mbits/sec because that's the minimal throughput between L1 to L4. As for h5 to h6, I predict that the latency will be around 45ms and the throughput will be around 20 Mbits/sec. The throughput will be lower than the least throughput found between L2 and L5 due to multiplexing from the previous pair.
+
+As a result, h1 to h4 has an average RTT of 161.840ms and a throughput of 20.4 Mbits/sec. Both measurements turn out to be very close to my prediction. As for h5 to h6, its average RTT is 41.687ms and throughout is 22.6 Mbits/sec. Compared to my prediction for h5 to h6, the results turned out to be quite close to my prediction. 
