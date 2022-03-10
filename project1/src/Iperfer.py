@@ -1,59 +1,49 @@
+# track how much data was sent during that time frame
+
 import sys
 import socket
+import time
 
-print(len(sys.argv))
-if(len(sys.argv) > 4 or len(sys.argv) < 4 ):
-  exit("Error: missing or additional arguments")
-elif(int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
-  exit("Error: port number must be in the range 1024 to 65535")
+PacketByte = bytes(0)
+Throughput = 0
 
+#print(len(sys.argv))
+if (len(sys.argv) > 4 or len(sys.argv) < 4):
+    exit("Error: missing or additional arguments")
+elif (int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
+    exit("Error: port number must be in the range 1024 to 65535")
 
 ServerName = sys.argv[1]
-ServerPort = sys.argv[2]
-Time = sys.argv[3]
+ServerPort = int(sys.argv[2])
+Time = int(sys.argv[3])
 ServerAddress = (ServerName, ServerPort)
-print(ServerAddress, Time)
+#print(ServerAddress, Time)
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-clientSocket.connect(ServerAddress)
+message = b"0" * 1000
 
-while 1:
-    
-    # Create message
-    message = input('Enter the lower case message: ')
+try:
+    clientSocket.connect(ServerAddress)
+    endtime = time.time() + 10
+    while (time.time() < endtime):
 
-    # Send message
-    clientSocket.send(message.encode("utf-8"))
+        # Send message
+        clientSocket.send(message.encode("utf-8"))
 
-    # Receive from server
-    modified_sent = clientSocket.recvfrom(2048)
+        # Receive from server
+        PacketByte = bytes(clientSocket.recvfrom(2048))
 
-    # Print received message
-    print("From server:", modified_sent)
-    
-    continue
+        # Print received message
+        print("From server:", PacketByte)
+
+        continue
+      
+except socket.error as err:
+    print(err)
+
+#Throughput = PacketByte / endtime #data sent/time elapsed
+#print("Throughput: " + Throughput + " Mbps")
 
 # Close connection
 clientSocket.close()
-
-try:
-  clientSocket.connect(ServerAddress)
-    #recv = s.recv(1024).decode()
-    #s.close()
-  for i in Time:
-    # Create message
-    message = input('Enter the lower case message: ')
-
-    # Send message
-    clientSocket.send(message.encode("utf-8"))
-
-    # Receive from server
-    modified_sent = clientSocket.recvfrom(2048)
-
-    # Print received message
-    print("From server:", modified_sent)
-    
-    continue
-except socket.error as err:
-   print(err)
