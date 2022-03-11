@@ -3,26 +3,23 @@ import sys
 import socket
 import time
 
-#print(len(sys.argv))
 if (len(sys.argv) > 4 or len(sys.argv) < 4):
     print("Error: missing or additional arguments")
 elif (int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
     print("Error: port number must be in the range 1024 to 65535")
 
-ServerName = sys.argv[1]
-ServerPort = int(sys.argv[2])
-Time = int(sys.argv[3])
-ServerAddress = (ServerName, ServerPort)
-Throughput = 0
+serverName = sys.argv[1]
+serverPort = int(sys.argv[2])
+time = int(sys.argv[3])
+serverAddress = (serverName, serverPort)
 bit = 0
 message = "1"
-
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-  clientSocket.connect(ServerAddress)
-  endtime = time.time() + Time
+  clientSocket.connect(serverAddress)
+  endtime = time.time() + time
   while (time.time() < endtime):
     
     # Send message
@@ -34,8 +31,10 @@ try:
 
   # Close connection
   clientSocket.close()
-  Throughput = (bit/1000000)/Time #data sent/time elapsed
-  print("Throughput: " + Throughput + " Mbps")
+    
+  #Print Bandwidth
+  bandwidth = (bit/1000000)/time
+  print("Bandwidth: " + bandwidth + " Mbps")
 except socket.error as err:
   print(err)
 
