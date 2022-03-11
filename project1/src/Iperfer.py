@@ -3,7 +3,7 @@ import sys
 import socket
 import time
 
-if (len(sys.argv) > 4 or len(sys.argv) < 4):
+if (len(sys.argv) != 4):
     print("Error: missing or additional arguments")
 elif (int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
     print("Error: port number must be in the range 1024 to 65535")
