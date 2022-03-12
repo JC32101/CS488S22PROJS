@@ -25,7 +25,7 @@ try:
     
     byte=len(modified_sent[0])
   Throughput = byte/(Time*125000)
-  print("sent="+str(bit/1000)+"KB rate="+str(Throughput)+"Mbps")
+  print("sent="+str(byte/1000)+"KB rate="+str(Throughput)+"Mbps")
 except socket.error as err:
   print(err)
 
