@@ -23,7 +23,7 @@ try:
     
     modified_sent = clientSocket.recvfrom(2048)
     
-    byte=len(modified_sent[0])
+    byte=byte+len(modified_sent[0])
   Throughput = byte/(Time*125000)
   print("sent="+str(byte/1000)+"KB rate="+str(Throughput)+"Mbps")
 except socket.error as err:
