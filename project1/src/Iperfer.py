@@ -21,7 +21,7 @@ try:
     
   while (time.time() < endtime):
     message = b"0" * 1000
-    clientSocket.send(message.encode("utf-8))
+    clientSocket.send(message)
     
     modified_sent = clientSocket.recvfrom(2048)
     
