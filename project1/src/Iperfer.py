@@ -12,7 +12,6 @@ ServerPort = int(sys.argv[2])
 Time = int(sys.argv[3])
 ServerAddress = (ServerName, ServerPort)
 byte = 0
-message = bytes(1000)
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -21,7 +20,8 @@ try:
   endtime = time.time() + Time
     
   while (time.time() < endtime):
-    clientSocket.send(message)
+    message = b"0" * 1000
+    clientSocket.send(message.encode("utf-8))
     
     modified_sent = clientSocket.recvfrom(2048)
     
