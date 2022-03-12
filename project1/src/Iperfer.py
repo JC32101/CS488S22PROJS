@@ -19,7 +19,7 @@ try:
   clientSocket.connect(ServerAddress)
   endtime = time.time() + Time
   while (time.time() < endtime):
-    clientSocket.send(message.encode("utf-8"))
+    clientSocket.send(message)
     
     modified_sent = clientSocket.recvfrom(2048)
     
