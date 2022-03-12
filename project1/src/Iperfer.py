@@ -31,7 +31,7 @@ try:
 except socket.error as err:
   print(err)
 
-  Throughput = byte/Time
-  print("sent=",str(Throughput/1000),"KB rate=",str(Throughput/125000),"Mbps")
+Throughput = byte/Time
+print("sent=",str(Throughput/1000),"KB rate=",str(Throughput/125000),"Mbps")
 
 
