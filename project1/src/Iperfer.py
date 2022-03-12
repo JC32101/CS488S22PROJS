@@ -15,19 +15,23 @@ byte = 0
 message = bytes(1000)
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 try:
   clientSocket.connect(ServerAddress)
   endtime = time.time() + Time
+    
   while (time.time() < endtime):
     clientSocket.send(message)
     
     modified_sent = clientSocket.recvfrom(2048)
     
     byte=byte+1000
+    
   clientSocket.close()
+except socket.error as err:
+  print(err)
 
   Throughput = byte/Time
   print("sent=",str(Throughput/1000),"KB rate=",str(Throughput/125000),"Mbps")
-except socket.error as err:
-  print(err)
+
 
