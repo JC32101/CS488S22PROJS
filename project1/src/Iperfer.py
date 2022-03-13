@@ -21,7 +21,7 @@ try:
   count=0
   while time.time()<endTime:
     message = bytes(1000)
-    clientSocket.sendAll(message)
+    clientSocket.send(message)
     count=count+1
     # modified_sent = clientSocket.recvfrom(2048)
     
