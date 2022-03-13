@@ -18,16 +18,15 @@ clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
   clientSocket.connect(serverAddress)
   endTime = time.time() + inputTime
-  count=0
+
   while time.time()<endTime:
     message = bytes(1000)
     clientSocket.send(message)
-    count=count+1
-    modified_sent = clientSocket.recvfrom(2048)
-    
+    byte=byte+1
+ 
   clientSocket.close()
 except socket.error as err:
   print(err)
 
-print("sent={} KB".format(count))
-print("rate={} Mbps".format((count*8/(1000*inputTime))))
+print("sent={} KB".format(byte))
+print("rate={} Mbps".format((byte*8/(1000*inputTime))))
