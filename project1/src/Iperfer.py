@@ -7,31 +7,28 @@ if (len(sys.argv) != 4):
 elif (int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
     print("Error: port number must be in the range 1024 to 65535")
 
-ServerName = sys.argv[1]
-ServerPort = int(sys.argv[2])
-Time = int(sys.argv[3])
-ServerAddress = (ServerName, ServerPort)
+serverName = sys.argv[1]
+serverPort = int(sys.argv[2])
+time = float(sys.argv[3])
+serverAddress = (serverName, serverPort)
 byte = 0
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-  clientSocket.connect(ServerAddress)
-  endtime = time.time() + Time
+  clientSocket.connect(serverAddress)
+  endTime = time.time()
+  count=0
+  while time.time()-endTime < time:
+    message = bytes(1000)
+    clientSocket.sendAll(message)
+    count=count+1
+    # modified_sent = clientSocket.recvfrom(2048)
     
-  while (time.time() < endtime):
-    message = b"0" * 1000
-    clientSocket.send(message)
-    
-    modified_sent = clientSocket.recvfrom(2048)
-    
-    byte=byte+1000
-    
+  modTime=time.time()-endTime    
   clientSocket.close()
 except socket.error as err:
   print(err)
 
-Throughput = byte/Time
-print("sent=",str(Throughput/1000),"KB rate=",str(Throughput/125000),"Mbps")
-
-
+print("sent={} KB".format(count))
+print("rate={} Mbps".format((count*8/(1000*modTime))))
