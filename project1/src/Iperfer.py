@@ -9,7 +9,7 @@ elif (int(sys.argv[2]) < 1025 or int(sys.argv[2]) > 65534):
 
 serverName = sys.argv[1]
 serverPort = int(sys.argv[2])
-time = float(sys.argv[3])
+time = int(sys.argv[3])
 serverAddress = (serverName, serverPort)
 byte = 0
 
